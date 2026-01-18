@@ -20,30 +20,34 @@
   font-size: 2.5em;
   margin-top: 0;
   margin-bottom: 0.5em;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid var(--border-color);
   padding-bottom: 0.3em;
+  color: var(--text-primary);
 }
 
 .markdown-container h2 {
   font-size: 2em;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.3em;
+  color: var(--text-primary);
 }
 
 .markdown-container h3 {
   font-size: 1.5em;
   margin-top: 1.2em;
   margin-bottom: 0.5em;
+  color: var(--text-primary);
 }
 
 .markdown-container p {
   margin: 1em 0;
+  color: var(--text-primary);
 }
 
 .markdown-container a {
-  color: #0366d6;
+  color: var(--link-color);
   text-decoration: none;
 }
 
@@ -51,19 +55,34 @@
   text-decoration: underline;
 }
 
+/* インラインコードの強調表示 */
+.markdown-container .inline-code {
+  background-color: var(--code-inline-bg);
+  color: var(--code-inline-color);
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+  font-weight: 500;
+  border: 1px solid var(--code-inline-border);
+  white-space: nowrap;
+}
+
+/* 通常のコード（バックアップ） */
 .markdown-container code {
   background-color: rgba(27, 31, 35, 0.05);
   padding: 0.2em 0.4em;
   border-radius: 3px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
   font-size: 0.9em;
 }
 
+/* SyntaxHighlighterのコンテナ調整 */
 .markdown-container pre {
-  background-color: #f6f8fa;
-  padding: 1em;
-  border-radius: 6px;
-  overflow-x: auto;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
 }
 
 .markdown-container pre code {
@@ -72,15 +91,16 @@
 }
 
 .markdown-container blockquote {
-  border-left: 4px solid #ddd;
+  border-left: 4px solid var(--border-color);
   padding-left: 1em;
   margin-left: 0;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .markdown-container ul,
 .markdown-container ol {
   padding-left: 2em;
+  color: var(--text-primary);
 }
 
 .markdown-container li {
@@ -94,10 +114,17 @@
   overflow-y: hidden;
 }
 
+.markdown-container .katex {
+  color: var(--text-primary);
+}
+
 /* Mermaidのスタイル */
 .markdown-container .mermaid {
   text-align: center;
   margin: 2em 0;
+  background-color: var(--bg-secondary);
+  padding: 1em;
+  border-radius: 8px;
 }
 
 /* テーブルのスタイル */
@@ -109,14 +136,19 @@
 
 .markdown-container th,
 .markdown-container td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   padding: 0.6em 1em;
   text-align: left;
+  color: var(--text-primary);
 }
 
 .markdown-container th {
-  background-color: #f6f8fa;
+  background-color: var(--bg-secondary);
   font-weight: bold;
+}
+
+.markdown-container tr:nth-child(even) {
+  background-color: var(--bg-secondary);
 }
 
 .markdown-container tr:nth-child(even) {

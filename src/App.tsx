@@ -1,14 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ThemeProvider } from './contexts/ThemeContext'
+import { Header } from './components/Header'
 import { MarkdownRenderer } from './components/MarkdownRenderer'
 import './App.css'
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="*" element={<MarkdownRenderer />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="*" element={<MarkdownRenderer />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   )
 }
 

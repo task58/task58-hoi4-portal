@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Mermaid } from './Mermaid';
 import 'katex/dist/katex.min.css';
 import './MarkdownRenderer.css';
@@ -67,7 +69,7 @@ export function MarkdownRenderer() {
         remarkPlugins={[remarkGfm, remarkMath]}
         rehypePlugins={[rehypeKatex]}
         components={{
-          // コードブロックでMermaidを処理
+          // コードブロックでMermaidとシンタックスハイライトを処理
           code(props) {
             const { className, children, ...rest } = props;
             const match = /language-(\w+)/.exec(className || '');
@@ -77,14 +79,36 @@ export function MarkdownRenderer() {
             // インラインコードかブロックコードかを判定
             const isInline = !className;
 
-            if (!isInline && lang === 'mermaid') {
+            // インラインコードの場合
+            if (isInline) {
+              return (
+                <code className="inline-code" {...rest}>
+                  {children}
+                </code>
+              );
+            }
+
+            // Mermaid図の場合
+            if (lang === 'mermaid') {
               return <Mermaid chart={code} />;
             }
 
+            // コードブロックの場合（シンタックスハイライト）
             return (
-              <code className={className} {...rest}>
-                {children}
-              </code>
+              <SyntaxHighlighter
+                style={vscDarkPlus}
+                language={lang || 'text'}
+                PreTag="div"
+                showLineNumbers={true}
+                wrapLines={true}
+                customStyle={{
+                  margin: '1.5em 0',
+                  borderRadius: '6px',
+                  fontSize: '0.9em',
+                }}
+              >
+                {code}
+              </SyntaxHighlighter>
             );
           },
         }}
