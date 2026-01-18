@@ -1,0 +1,124 @@
+.markdown-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+.markdown-container.loading,
+.markdown-container.error {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.markdown-container.error {
+  color: #d32f2f;
+}
+
+/* Markdown要素のスタイリング */
+.markdown-container h1 {
+  font-size: 2.5em;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.3em;
+}
+
+.markdown-container h2 {
+  font-size: 2em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.3em;
+}
+
+.markdown-container h3 {
+  font-size: 1.5em;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-container p {
+  margin: 1em 0;
+}
+
+.markdown-container a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.markdown-container a:hover {
+  text-decoration: underline;
+}
+
+.markdown-container code {
+  background-color: rgba(27, 31, 35, 0.05);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+}
+
+.markdown-container pre {
+  background-color: #f6f8fa;
+  padding: 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.markdown-container pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.markdown-container blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 1em;
+  margin-left: 0;
+  color: #666;
+}
+
+.markdown-container ul,
+.markdown-container ol {
+  padding-left: 2em;
+}
+
+.markdown-container li {
+  margin: 0.5em 0;
+}
+
+/* KaTeX数式のスタイル */
+.markdown-container .katex-display {
+  margin: 1.5em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Mermaidのスタイル */
+.markdown-container .mermaid {
+  text-align: center;
+  margin: 2em 0;
+}
+
+/* テーブルのスタイル */
+.markdown-container table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+
+.markdown-container th,
+.markdown-container td {
+  border: 1px solid #ddd;
+  padding: 0.6em 1em;
+  text-align: left;
+}
+
+.markdown-container th {
+  background-color: #f6f8fa;
+  font-weight: bold;
+}
+
+.markdown-container tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
