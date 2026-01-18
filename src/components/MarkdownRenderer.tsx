@@ -68,17 +68,21 @@ export function MarkdownRenderer() {
         rehypePlugins={[rehypeKatex]}
         components={{
           // コードブロックでMermaidを処理
-          code({ node, inline, className, children, ...props }) {
+          code(props) {
+            const { className, children, ...rest } = props;
             const match = /language-(\w+)/.exec(className || '');
             const lang = match ? match[1] : '';
             const code = String(children).replace(/\n$/, '');
+            
+            // インラインコードかブロックコードかを判定
+            const isInline = !className;
 
-            if (!inline && lang === 'mermaid') {
+            if (!isInline && lang === 'mermaid') {
               return <Mermaid chart={code} />;
             }
 
             return (
-              <code className={className} {...props}>
+              <code className={className} {...rest}>
                 {children}
               </code>
             );
