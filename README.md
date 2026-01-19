@@ -1,21 +1,127 @@
-# React + TypeScript + Vite
+# HOI4 Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hearts of Iron IV関連の情報ポータルサイト。Markdownベースで記事を管理します。
 
-Currently, two official plugins are available:
+## 特徴
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📝 Markdownで記事を記述
+- 🎨 ダークモード/ライトモード切り替え
+- 🔢 LaTeX数式表示対応
+- 📊 Mermaid図表対応
+- 💻 シンタックスハイライト
+- 🚀 GitHub Pagesデプロイ対応
 
-## React Compiler
+## 開発環境のセットアップ
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+```bash
+# 依存関係のインストール
+npm install
 
-Note: This will impact Vite dev & build performances.
+# 開発サーバーの起動
+npm run dev
+```
 
-## Expanding the ESLint configuration
+## ビルド
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 開発用ビルド（ローカル用）
+
+```bash
+npm run build:dev
+```
+
+`dist`フォルダにビルドされます。
+
+### デプロイ用ビルド（GitHub Pages用）
+
+```bash
+npm run build:deploy
+```
+
+`docs`フォルダにビルドされます。ベースパスが`/task58-hoi4-portal/`に設定されます。
+
+## ベースパスの設定
+
+GitHub Pagesなどのサブディレクトリでホストする場合、[package.json](package.json)の`homepage`フィールドを設定してください：
+
+```json
+{
+  "homepage": "https://username.github.io/repository-name"
+}
+```
+
+ビルド時に自動的にURLからパス（`/repository-name/`）が抽出され、正しく設定されます。
+
+ルートドメインでホストする場合は：
+
+```json
+{
+  "homepage": "https://example.com"
+}
+```
+
+または`homepage`フィールドを削除すれば、ルートパス（`/`）が使用されます。
+
+## 記事の追加
+
+1. `pages`フォルダにMarkdownファイルを作成（例：`tutorial.md`）
+2. ブラウザで`/tutorial`にアクセス
+
+### URLとファイルの対応
+
+- `/` → `pages/index.md`
+- `/about` → `pages/about.md`
+- `/guide/beginner` → `pages/guide/beginner.md`
+
+## Markdown記法
+
+### コードブロック
+
+````markdown
+```typescript
+const greeting = "Hello, World!";
+console.log(greeting);
+```
+````
+
+### インラインコード
+
+```markdown
+`const example = "code"`
+```
+
+### LaTeX数式
+
+インライン数式: `$E = mc^2$`
+
+ブロック数式:
+
+```markdown
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+```
+
+### Mermaid図
+
+````markdown
+```mermaid
+graph TD
+    A[Start] --> B{Decision}
+    B -->|Yes| C[Action]
+    B -->|No| D[End]
+```
+````
+
+## 技術スタック
+
+- React 19
+- TypeScript
+- Vite
+- React Router
+- React Markdown
+- KaTeX (数式)
+- Mermaid (図表)
+- react-syntax-highlighter (シンタックスハイライト)
 
 ```js
 export default defineConfig([
