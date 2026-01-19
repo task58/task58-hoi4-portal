@@ -91,4 +91,4 @@ graph TD
 
 ## Links
 
-- [About](/about)
+- [About](./about)
