@@ -1,4 +1,4 @@
-# Welcome to HOI4 Portal
+# Welcome to task58's HOI4 Portal
 
 これはHOI4ポータルサイトのトップページです。
 
@@ -91,4 +91,4 @@ graph TD
 
 ## Links
 
-- [About](/about)
+- [About](./about)
