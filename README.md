@@ -1,6 +1,6 @@
-# HOI4 Portal
+# task58's HOI4 Portal
 
-Hearts of Iron IV関連の情報ポータルサイト。Markdownベースで記事を管理します。
+task58のHearts of Iron IV関連の情報ポータルサイト。Markdownベースで記事を管理します。
 
 ## 特徴
 

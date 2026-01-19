@@ -7,7 +7,7 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="header-content">
-        <h1 className="site-title">HOI4 Portal</h1>
+        <h1 className="site-title">task58's HOI4 Portal</h1>
         <button
           className="theme-toggle"
           onClick={toggleTheme}
