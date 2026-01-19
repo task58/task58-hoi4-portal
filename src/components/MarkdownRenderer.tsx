@@ -7,6 +7,7 @@ import rehypeKatex from 'rehype-katex';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Mermaid } from './Mermaid';
+import { getAssetUrl } from '../utils/paths';
 import 'katex/dist/katex.min.css';
 import './MarkdownRenderer.css';
 
@@ -22,6 +23,7 @@ export function MarkdownRenderer() {
       setError(null);
 
       // URLパスからMarkdownファイルのパスを決定
+      // React Routerのbasenameを考慮したパスが既に取得される
       let path = location.pathname;
       if (path === '/') {
         path = '/index';
@@ -32,7 +34,9 @@ export function MarkdownRenderer() {
 
       try {
         // pagesフォルダから対応するMarkdownファイルを読み込む
-        const response = await fetch(`/pages${path}.md`);
+        // getAssetUrlでベースパスを考慮したURLを生成
+        const markdownUrl = getAssetUrl(`pages${path}.md`);
+        const response = await fetch(markdownUrl);
         
         if (!response.ok) {
           throw new Error(`ページが見つかりません: ${path}`);
