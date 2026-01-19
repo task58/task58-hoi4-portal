@@ -11,7 +11,7 @@
     "build:deploy": "tsc -b && vite build --outDir docs --mode production",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "npm run build:deploy && git add . && git commit -m \"Deploy: update docs\" && git push origin dev && git checkout main && git merge dev && git push origin main && git checkout dev"
+    "deploy": "npm run build:deploy && git add . && git commit -m \"Deploy: update docs\" && git push origin dev && git checkout main && git merge dev --no-edit -X theirs && git push origin main && git checkout dev"
   },
   "dependencies": {
     "mermaid": "^11.12.2",
