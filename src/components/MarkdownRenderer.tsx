@@ -48,8 +48,13 @@ export function MarkdownRenderer() {
           const tryResponse = await fetch(markdownUrl);
           
           if (tryResponse.ok) {
-            response = tryResponse;
-            break;
+            // Content-Typeをチェックして、Markdownファイルかどうか確認
+            const contentType = tryResponse.headers.get('content-type');
+            // Markdownまたはプレーンテキストの場合のみ受け入れる
+            if (contentType && (contentType.includes('text/markdown') || contentType.includes('text/plain'))) {
+              response = tryResponse;
+              break;
+            }
           }
         }
 
@@ -58,6 +63,12 @@ export function MarkdownRenderer() {
         }
 
         const text = await response.text();
+        
+        // HTMLが返ってきた場合はエラー（開発環境でindex.htmlが返ることがある）
+        if (text.trim().startsWith('<!doctype') || text.trim().startsWith('<html')) {
+          throw new Error(`ページが見つかりません: ${cleanPath}`);
+        }
+        
         setContent(text);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'ファイルの読み込みに失敗しました');

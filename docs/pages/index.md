@@ -14,10 +14,10 @@ HoI4のプレイと観戦をやってますが、最近はよく観戦用のMod�
 ## 便利(?)な行先集
 
 - 「お前はどのようにHoI4をプレイするんだ」
-  → [プレイ日記](./play-diary/index)
+  → [プレイ日記](./play-diary)
 
 - 「観戦の情報をよこせ」
-  → [観戦,検証](./timelapse/index)
+  → [観戦,検証](./timelapse)
 
 - 「moddingの情報を出せ」
-  → [Mod作成記録](./modding/index)
+  → [Mod作成記録](./modding)
