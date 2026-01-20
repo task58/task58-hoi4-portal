@@ -7,6 +7,7 @@ import rehypeKatex from 'rehype-katex';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Mermaid } from './Mermaid';
+import { NotFound } from './NotFound';
 import { getAssetUrl } from '../utils/paths';
 import 'katex/dist/katex.min.css';
 import './MarkdownRenderer.css';
@@ -30,16 +31,30 @@ export function MarkdownRenderer() {
       }
       
       // 末尾のスラッシュを削除
-      path = path.replace(/\/$/, '');
+      const cleanPath = path.replace(/\/$/, '');
 
       try {
-        // pagesフォルダから対応するMarkdownファイルを読み込む
-        // getAssetUrlでベースパスを考慮したURLを生成
-        const markdownUrl = getAssetUrl(`pages${path}.md`);
-        const response = await fetch(markdownUrl);
-        
-        if (!response.ok) {
-          throw new Error(`ページが見つかりません: ${path}`);
+        // 複数のパターンでMarkdownファイルを検索
+        const patterns = [
+          `pages${cleanPath}.md`,           // 例: /play-diary → /pages/play-diary.md
+          `pages${cleanPath}/index.md`,     // 例: /play-diary → /pages/play-diary/index.md
+        ];
+
+        let response: Response | null = null;
+
+        // 各パターンを順番に試す
+        for (const pattern of patterns) {
+          const markdownUrl = getAssetUrl(pattern);
+          const tryResponse = await fetch(markdownUrl);
+          
+          if (tryResponse.ok) {
+            response = tryResponse;
+            break;
+          }
+        }
+
+        if (!response) {
+          throw new Error(`ページが見つかりません: ${cleanPath}`);
         }
 
         const text = await response.text();
@@ -59,12 +74,7 @@ export function MarkdownRenderer() {
   }
 
   if (error) {
-    return (
-      <div className="markdown-container error">
-        <h1>エラー</h1>
-        <p>{error}</p>
-      </div>
-    );
+    return <NotFound message={error} path={location.pathname} />;
   }
 
   return (
