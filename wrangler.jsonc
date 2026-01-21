@@ -1,0 +1,7 @@
+{
+  "name": "task58-hoi4-portal",
+  "compatibility_date": "2026-01-21",
+  "assets": {
+    "directory": "./dist"
+  }
+}
