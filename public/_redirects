@@ -1,3 +1,0 @@
-# Cloudflare Pages SPA routing
-# 既存のファイル以外をすべてindex.htmlで処理（200ステータス）
-/* /index.html 200
