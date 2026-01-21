@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "merge": "git checkout main && git pull origin main && git merge dev --no-edit && git push origin main && git checkout dev"
   },
   "dependencies": {
     "mermaid": "^11.12.2",
