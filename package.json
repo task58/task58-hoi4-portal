@@ -3,15 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://task58.github.io/task58-hoi4-portal",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:dev": "tsc -b && vite build --outDir dist",
-    "build:deploy": "tsc -b && vite build --outDir docs --mode production",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "deploy": "npm run build:deploy && git add . && git commit -m \"Deploy: update docs\" && git push origin dev && git checkout main && git merge dev --no-edit -X theirs && git push origin main && git checkout dev"
+    "preview": "vite preview"
   },
   "dependencies": {
     "mermaid": "^11.12.2",
