@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/setup-spa-routes.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "merge": "git checkout main && git pull origin main && git merge dev --no-edit && git push origin main && git checkout dev"
